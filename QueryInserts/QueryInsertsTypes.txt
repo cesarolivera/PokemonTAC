@@ -1,0 +1,18 @@
+Normal-Physical //17
+Fire-Special  //18
+Normal-Special  //19
+Dragon-Special  //20
+Fire-Physical    //21
+Fire-Special  //22
+Fire-Special    //23
+Fire-Special      //24
+//Tipos de movimientos
+Electric   //1
+('Special');//2
+ ('Normal');//3
+ ('Grass');//4
+ ('Physical');//5
+ ('Poison');//6
+ ('Status');//7
+ ('Fire');//8
+ ('Dragon');//9

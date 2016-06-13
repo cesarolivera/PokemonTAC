@@ -1,0 +1,257 @@
+CREATE TABLE movimiento (id INT NOT NULL AUTO_INCREMENT, nombre VARCHAR(15) NOT NULL, base_power INT NOT NULL, acurracy INT NOT NULL, PRIMARY KEY (id));
+--Pikachu
+INSERT INTO pokemondb.movimiento (nombre, base_power, accuracy) 
+	VALUES ('Thunder', 110, 70);
+INSERT INTO pokemondb.movimiento (nombre, base_power, accuracy) 
+	VALUES ('Slam', 80, 75);
+INSERT INTO pokemondb.movimiento (nombre, base_power, accuracy) 
+	VALUES ('Thunder Shock', 40, 100);
+INSERT INTO pokemondb.movimiento (nombre, base_power, accuracy) 
+	VALUES ('Quick Attack', 40, 100);
+INSERT INTO pokemondb.movimiento (nombre, base_power, accuracy) 
+	VALUES ('Thunderbolt', 90, 100);
+INSERT INTO pokemondb.movimiento (nombre, base_power, accuracy) 
+	VALUES ('Discharge', 80, 100);
+INSERT INTO pokemondb.movimiento (nombre, base_power, accuracy) 
+	VALUES ('Spark', 80, 75);
+INSERT INTO pokemondb.movimiento (nombre, base_power, accuracy) 
+	VALUES ('Feint', 30, 100);
+
+--Bulbasour
+
+INSERT INTO pokemondb.movimiento (nombre, base_power, accuracy) 
+	VALUES ('Vine Whip', 45, 100);
+INSERT INTO pokemondb.movimiento (nombre, base_power, accuracy) 
+	VALUES ('Take Down', 90, 85);
+INSERT INTO pokemondb.movimiento (nombre, base_power, accuracy) 
+	VALUES ('Razor Leaf', 55, 95);
+INSERT INTO pokemondb.movimiento (nombre, base_power, accuracy) 
+	VALUES ('Double-Edge', 120, 100);
+INSERT INTO pokemondb.movimiento (nombre, base_power, accuracy) 
+	VALUES ('Seed Bomb', 80, 100);
+INSERT INTO pokemondb.movimiento (nombre, base_power, accuracy) 
+	VALUES ('Poison Powder', 0, 75);
+INSERT INTO pokemondb.movimiento (nombre, base_power, accuracy) 
+	VALUES ('Leech Seed', 0, 90);
+INSERT INTO pokemondb.movimiento (nombre, base_power, accuracy) 
+	VALUES ('Tackle', 50, 100);
+
+--Charmander
+
+INSERT INTO pokemondb.movimiento (nombre, base_power, accuracy) 
+	VALUES ('Scratch', 40, 100);
+INSERT INTO pokemondb.movimiento (nombre, base_power, accuracy) 
+	VALUES ('Ember', 40, 100);
+INSERT INTO pokemondb.movimiento (nombre, base_power, accuracy) 
+	VALUES ('Smokeescreen', 0, 100);
+INSERT INTO pokemondb.movimiento (nombre, base_power, accuracy) 
+	VALUES ('Dragon Rage', 0, 100);
+INSERT INTO pokemondb.movimiento (nombre, base_power, accuracy) 
+	VALUES ('Fire Fang', 65, 95);
+INSERT INTO pokemondb.movimiento (nombre, base_power, accuracy) 
+	VALUES ('Inferno', 100, 50);
+INSERT INTO pokemondb.movimiento (nombre, base_power, accuracy) 
+	VALUES ('Flamethrower', 90, 100);
+INSERT INTO pokemondb.movimiento (nombre, base_power, accuracy) 
+	VALUES ('Flame Burst', 70, 100);
+
+
+--Tipos de movimientos
+INSERT INTO pokemondb.type (nombre) 
+	VALUES ('Electric');
+INSERT INTO pokemondb.type (nombre) 
+	VALUES ('Special');
+INSERT INTO pokemondb.type (nombre) 
+	VALUES ('Normal');
+INSERT INTO pokemondb.type (nombre) 
+	VALUES ('Grass');
+INSERT INTO pokemondb.type (nombre) 
+	VALUES ('Physical');
+INSERT INTO pokemondb.type (nombre) 
+	VALUES ('Poison');
+INSERT INTO pokemondb.type (nombre) 
+	VALUES ('Status');
+INSERT INTO pokemondb.type (nombre) 
+	VALUES ('Fire');
+INSERT INTO pokemondb.type (nombre) 
+	VALUES ('Dragon');
+
+
+--Relación Tipo x Movimiento
+
+--Pikachu
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (1,1);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (2,1);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (3,2);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (5,2);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (1,3);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (2,3);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (3,4);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (5,4);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (1,5);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (2,5);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (1,6);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (2,6);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (1,7);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (5,7);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (3,8);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (5,8);
+
+
+--Bulbasour
+
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (4,9);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (5,9);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (3,10);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (5,10);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (4,11);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (5,11);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (3,12);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (5,12);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (4,13);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (5,13);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (6,14);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (7,14);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (4,15);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (7,15);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (3,16);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (5,16);
+
+--Charmander
+
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (3,17);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (5,17);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (8,18);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (2,18);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (3,19);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (2,19);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (9,20);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (2,20);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (8,21);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (2,21);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (8,22);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (2,22);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (8,23);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (2,23);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (8,24);
+INSERT INTO pokemondb.typexmovimiento (id_type,id_movimiento) 
+	VALUES (2,24);
+
+
+
+
+--movimientoxpokemon
+--Pikachu
+INSERT INTO pokemondb.movimientoxpokemon (id_pokemon,id_movimiento,status) 
+	VALUES (1,1,1);
+INSERT INTO pokemondb.movimientoxpokemon (id_pokemon,id_movimiento,status) 
+	VALUES (1,2,1);
+INSERT INTO pokemondb.movimientoxpokemon (id_pokemon,id_movimiento,status) 
+	VALUES (1,3,1);
+INSERT INTO pokemondb.movimientoxpokemon (id_pokemon,id_movimiento,status) 
+	VALUES (1,4,1);
+INSERT INTO pokemondb.movimientoxpokemon (id_pokemon,id_movimiento,status) 
+	VALUES (1,5,1);
+INSERT INTO pokemondb.movimientoxpokemon (id_pokemon,id_movimiento,status) 
+	VALUES (1,6,1);
+INSERT INTO pokemondb.movimientoxpokemon (id_pokemon,id_movimiento,status) 
+	VALUES (1,7,1);
+INSERT INTO pokemondb.movimientoxpokemon (id_pokemon,id_movimiento,status) 
+	VALUES (1,8,1);
+
+--Bulbasour
+INSERT INTO pokemondb.movimientoxpokemon (id_pokemon,id_movimiento,status) 
+	VALUES (2,9,1);
+INSERT INTO pokemondb.movimientoxpokemon (id_pokemon,id_movimiento,status) 
+	VALUES (2,10,1);
+INSERT INTO pokemondb.movimientoxpokemon (id_pokemon,id_movimiento,status) 
+	VALUES (2,11,1);
+INSERT INTO pokemondb.movimientoxpokemon (id_pokemon,id_movimiento,status) 
+	VALUES (2,12,1);
+INSERT INTO pokemondb.movimientoxpokemon (id_pokemon,id_movimiento,status) 
+	VALUES (2,13,1);
+INSERT INTO pokemondb.movimientoxpokemon (id_pokemon,id_movimiento,status) 
+	VALUES (2,14,1);
+INSERT INTO pokemondb.movimientoxpokemon (id_pokemon,id_movimiento,status) 
+	VALUES (2,15,1);
+INSERT INTO pokemondb.movimientoxpokemon (id_pokemon,id_movimiento,status) 
+	VALUES (2,16,1);
+
+
+--Charmander
+INSERT INTO pokemondb.movimientoxpokemon (id_pokemon,id_movimiento,status) 
+	VALUES (3,17,1);
+INSERT INTO pokemondb.movimientoxpokemon (id_pokemon,id_movimiento,status) 
+	VALUES (3,18,1);
+INSERT INTO pokemondb.movimientoxpokemon (id_pokemon,id_movimiento,status) 
+	VALUES (3,19,1);
+INSERT INTO pokemondb.movimientoxpokemon (id_pokemon,id_movimiento,status) 
+	VALUES (3,20,1);
+INSERT INTO pokemondb.movimientoxpokemon (id_pokemon,id_movimiento,status) 
+	VALUES (3,21,1);
+INSERT INTO pokemondb.movimientoxpokemon (id_pokemon,id_movimiento,status) 
+	VALUES (3,22,1);
+INSERT INTO pokemondb.movimientoxpokemon (id_pokemon,id_movimiento,status) 
+	VALUES (3,23,1);
+INSERT INTO pokemondb.movimientoxpokemon (id_pokemon,id_movimiento,status) 
+	VALUES (3,24,1);
+
+
+
+
+
+
+
+
+
+
+
+
+
