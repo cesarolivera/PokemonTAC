@@ -26,8 +26,6 @@ public class PokemonManager {
         for(int i=0;i<entrenador.getPokemon().size();i++)
             if(entrenador.getPokemon().get(i).isEn_combate())
                 numPok++;
-        
-        
         return numPok;
     }
     private static int getHP_afterAtack(int hp_op,Pokemon pokemon,int indexMov,Pokemon pokemon_op){
@@ -103,12 +101,12 @@ public class PokemonManager {
     }
     public static void ataquePokemon(Batalla batalla,Pokemon pokemon,int indexMov,Entrenador entrenador_op){
         //Escojer movimoentos aleatorios
-        //int numRand[]=generarAleatorios(entrenador_op.getPokemon().size());
-        int numRand[]=generarIndicesMiniMax(batalla,entrenador_op,pokemon,indexMov);//MiniMAx
-//        int indexPokemon = numRand[0]; //Aleatorio
-//        int indexMovimiento = numRand[1]; //Aleatorio
-        int indexPokemon = numRand[0]+1; //MiniMax
-        int indexMovimiento = numRand[1]+1; //MiniMax
+        int numRand[]=generarAleatorios(entrenador_op.getPokemon().size());
+        //int numRand[]=generarIndicesMiniMax(batalla,entrenador_op,pokemon,indexMov);//MiniMAx
+        int indexPokemon = numRand[0]; //Aleatorio
+        int indexMovimiento = numRand[1]; //Aleatorio
+        //int indexPokemon = numRand[0]+1; //MiniMax
+        //int indexMovimiento = numRand[1]+1; //MiniMax
         //int contador=0;
 //        for(int i=0;i<entrenador_op.getPokemon().size();i++)
 //            if(entrenador_op.getPokemon().get(i).isEn_combate()) contador++;
