@@ -8,6 +8,8 @@ import grupolisp.pokemon.controller.PokemonManager;
 import grupolisp.pokemon.model.bean.Entrenador;
 import grupolisp.pokemon.model.bean.Batalla;
 import grupolisp.pokemon.model.bean.Pokemon; 
+import grupolisp.pokemon.gui.VentanaPrincipal;
+
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -67,6 +69,9 @@ public class PokemonAplication {
         entrenador.setBatallas_perdidas(0);
         entrenador.setRegDate(new Date());
         PokemonManager.addEntrenador(entrenador);
+        
+        VentanaPrincipal ventana=new VentanaPrincipal();
+        ventana.setVisible(true);
         
         System.out.println("Elija una opción: (1) Batalla 3 vs 3   |  (2) Batalla 4 vs 4");
         //List <Pokemon> pokemons = new ArrayList<Pokemon>();
