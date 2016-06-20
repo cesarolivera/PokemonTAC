@@ -9,6 +9,7 @@ import grupolisp.pokemon.model.bean.Batalla;
 import grupolisp.pokemon.model.bean.Entrenador;
 import grupolisp.pokemon.model.bean.Movimiento;
 import com.mysql.jdbc.Driver;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
@@ -279,7 +280,7 @@ public class PokemonManager {
                 pokemon.setAtaque(rs.getInt("ataque"));
                 pokemon.setDefensa(rs.getInt("defensa"));
                 pokemon.setVelocidad(rs.getInt("velocidad"));
-                
+                pokemon.setImage(rs.getBytes("imagen"));
                 listPokemon.add(pokemon);
             }
         }
@@ -320,7 +321,7 @@ public class PokemonManager {
                 pokemon.setAtaque(rs.getInt("ataque"));
                 pokemon.setDefensa(rs.getInt("defensa"));
                 pokemon.setVelocidad(rs.getInt("velocidad"));
-                
+                pokemon.setImage(rs.getBytes("imagen"));
             }
         }
         catch (SQLException e) {

@@ -26,6 +26,8 @@ public class PokemonAplication {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws SQLException {
+        VentanaPrincipal ventana=new VentanaPrincipal();
+        ventana.setVisible(true);
         Scanner in=new Scanner(System.in);
         Batalla batalla=new Batalla();
         batalla.setId(1);
@@ -70,8 +72,6 @@ public class PokemonAplication {
         entrenador.setRegDate(new Date());
         PokemonManager.addEntrenador(entrenador);
         
-        VentanaPrincipal ventana=new VentanaPrincipal();
-        ventana.setVisible(true);
         
         System.out.println("Elija una opción: (1) Batalla 3 vs 3   |  (2) Batalla 4 vs 4");
         //List <Pokemon> pokemons = new ArrayList<Pokemon>();

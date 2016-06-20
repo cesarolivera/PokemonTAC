@@ -5,6 +5,14 @@
  */
 package grupolisp.pokemon.gui;
 
+import grupolisp.pokemon.controller.PokemonManager;
+import grupolisp.pokemon.model.bean.Batalla;
+import grupolisp.pokemon.model.bean.Entrenador;
+import java.sql.SQLException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -32,7 +40,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         modobatalla = new javax.swing.ButtonGroup();
         dificultadgroup = new javax.swing.ButtonGroup();
-        jLabel1 = new javax.swing.JLabel();
+        escritorio = new javax.swing.JDesktopPane();
         txtnentrenador = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         confirmdatosbatalla = new javax.swing.JButton();
@@ -43,10 +51,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         rbfacil = new javax.swing.JRadioButton();
         rbdificil = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("POKEMON PRIMERA GENERACIÓN");
+        escritorio.setBackground(new java.awt.Color(255, 255, 255));
 
         txtnentrenador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,6 +77,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Modo de Batalla"));
 
         modobatalla.add(batalla3x3);
+        batalla3x3.setSelected(true);
         batalla3x3.setText("Batalla 3 vs 3");
 
         modobatalla.add(batalla4x4);
@@ -96,6 +106,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Dificultad"));
 
         dificultadgroup.add(rbfacil);
+        rbfacil.setSelected(true);
         rbfacil.setText("Facil");
 
         dificultadgroup.add(rbdificil);
@@ -117,57 +128,78 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(rbfacil)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 4, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(rbdificil)
                 .addContainerGap())
+        );
+
+        jLabel1.setText("POKEMON PRIMERA GENERACIÓN");
+
+        escritorio.setLayer(txtnentrenador, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(confirmdatosbatalla, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
+        escritorio.setLayout(escritorioLayout);
+        escritorioLayout.setHorizontalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(194, 194, 194))
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(escritorioLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtnentrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(escritorioLayout.createSequentialGroup()
+                        .addGap(384, 384, 384)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
+                .addContainerGap(229, Short.MAX_VALUE)
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(confirmdatosbatalla))
+                .addGap(42, 42, 42)
+                .addComponent(jButton2)
+                .addGap(243, 243, 243))
+        );
+        escritorioLayout.setVerticalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(63, 63, 63)
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(escritorioLayout.createSequentialGroup()
+                        .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtnentrenador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(74, 74, 74)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(confirmdatosbatalla)
+                    .addComponent(jButton2))
+                .addGap(31, 31, 31))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(221, 221, 221)
-                        .addComponent(confirmdatosbatalla)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtnentrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(80, 80, 80)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(165, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(197, 197, 197))
+            .addComponent(escritorio)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtnentrenador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(confirmdatosbatalla))
-                .addGap(72, 72, 72))
+            .addComponent(escritorio)
         );
 
         pack();
@@ -204,6 +236,64 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         else if(rbdificil.isSelected()){
             dificultad="dificil";
         }
+        //Empieza la batalla
+        Batalla batalla=new Batalla();
+        batalla.setId(1);
+        //Se prepara el entrenador
+        Entrenador entrenador=new Entrenador();
+        entrenador.setNombre(nombreEntrenador);
+        entrenador.setBatallas_ganadas(0);
+        entrenador.setBatallas_perdidas(0);
+        entrenador.setRegDate(new Date());
+        try {
+            PokemonManager.addEntrenador(entrenador);
+        } catch (SQLException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //Se prepara al oponente
+        Entrenador entrenador_op = null;
+        try {      
+            entrenador_op=PokemonManager.queryByNameOfEntrenador("Equipo Rocket");
+            entrenador_op.addPokemon(PokemonManager.queryByNameOfPokemon("Pikachu"));
+            batalla.setHp_oponente(PokemonManager.queryByNameOfPokemon("Pikachu").getHp());
+            entrenador_op.addPokemon(PokemonManager.queryByNameOfPokemon("Bulbasaur"));
+            batalla.setHp_oponente(batalla.getHp_oponente()+PokemonManager.queryByNameOfPokemon("Bulbasaur").getHp());
+            entrenador_op.addPokemon(PokemonManager.queryByNameOfPokemon("Charmander"));
+            batalla.setHp_oponente(batalla.getHp_oponente()+PokemonManager.queryByNameOfPokemon("Charmander").getHp());
+            //Se añade movimientos a cada pokemon (4 por pokemon)
+            for(int i=0;i<entrenador_op.getPokemon().size();i++)
+                PokemonManager.addMovimientos(entrenador_op.getPokemon().get(i));
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //Código para mostrar los Datos del oponente
+        VentanaDatosOp formop = new VentanaDatosOp();
+        escritorio.add(formop);//this.setVisible(false);
+        formop.show();
+        formop.lblnopentrenador.setText(entrenador_op.getNombre());
+        formop.lblnumvictorias.setText(""+entrenador_op.getBatallas_ganadas());
+        formop.lblnumderrotas.setText(""+entrenador_op.getBatallas_perdidas());
+        
+        //mostrar pokemons
+        ImageIcon icon1=new ImageIcon(entrenador_op.getPokemon().get(0).getImage());
+        formop.nombPokemon1.setText(entrenador_op.getPokemon().get(0).getNombre());
+        formop.lblpokemon1.setIcon(icon1);
+        
+        ImageIcon icon2=new ImageIcon(entrenador_op.getPokemon().get(1).getImage());
+        formop.nombPokemon2.setText(entrenador_op.getPokemon().get(1).getNombre());
+        formop.lblpokemon2.setIcon(icon2);
+        
+        ImageIcon icon3=new ImageIcon(entrenador_op.getPokemon().get(2).getImage());
+        formop.nombPokemon3.setText(entrenador_op.getPokemon().get(2).getNombre());
+        formop.lblpokemon3.setIcon(icon3);
+        
+        //Código para llamar al formulario para elegir los pokemons
+//        ElegirPokemons ventanaElegirPokemons = new ElegirPokemons();
+//        ventanaElegirPokemons.setVisible(true);
+//        ventanaElegirPokemons.lblnentrenador.setText("Bienvenido entrenador "+nombreEntrenador);
+        
     }//GEN-LAST:event_confirmdatosbatallaActionPerformed
 
     /**
@@ -246,6 +336,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JRadioButton batalla4x4;
     private javax.swing.JButton confirmdatosbatalla;
     private javax.swing.ButtonGroup dificultadgroup;
+    private javax.swing.JDesktopPane escritorio;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
