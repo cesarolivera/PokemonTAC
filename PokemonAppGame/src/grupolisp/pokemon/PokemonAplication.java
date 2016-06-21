@@ -28,6 +28,8 @@ public class PokemonAplication {
     public static void main(String[] args) throws SQLException {
         VentanaPrincipal ventana=new VentanaPrincipal();
         ventana.setVisible(true);
+        
+        
         Scanner in=new Scanner(System.in);
         Batalla batalla=new Batalla();
         batalla.setId(1);

@@ -46,7 +46,7 @@ public class Pokemon {
             this.nombre = nombre;
     }
     public String getTipo() {
-            return nombre;
+            return tipo;
     }
     public void setTipo(String tipo) {
             this.tipo = tipo;
