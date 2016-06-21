@@ -5,6 +5,18 @@
  */
 package grupolisp.pokemon.gui;
 
+import grupolisp.pokemon.controller.PokemonManager;
+import grupolisp.pokemon.model.bean.Batalla;
+import grupolisp.pokemon.model.bean.Entrenador;
+import grupolisp.pokemon.model.bean.Pokemon;
+import java.sql.SQLException;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author César Olivera
@@ -17,7 +29,10 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
     public BatallaPokemon() {
         initComponents();
     }
-
+    
+    Entrenador entrenador=new Entrenador();
+    Entrenador entrenador_op = null;
+    Batalla batalla=new Batalla();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,9 +71,22 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
         jPanel4 = new javax.swing.JPanel();
         imgcurrpokemon = new javax.swing.JLabel();
         pokemoncurrent = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         imgcurrpokemonop = new javax.swing.JLabel();
         pokemoncurrentop = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jProgressBar1 = new javax.swing.JProgressBar();
+        jProgressBar2 = new javax.swing.JProgressBar();
+        jProgressBar3 = new javax.swing.JProgressBar();
+        jProgressBar4 = new javax.swing.JProgressBar();
+        Iniciar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -84,7 +112,6 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Cambiar Pokemon"));
 
-        cmbpokemon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elije un pokemon" }));
         cmbpokemon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbpokemonActionPerformed(evt);
@@ -92,6 +119,11 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
         });
 
         jButton2.setText("Cambiar Pokemon");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -204,12 +236,26 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
         pokemoncurrent.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pokemoncurrent.setText("Current Pokemon");
 
+        jLabel2.setText("HP");
+
+        jLabel3.setText("Ataque");
+
+        jLabel5.setText("Defensa");
+
+        jLabel6.setText("Velocidad");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(102, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(imgcurrpokemon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pokemoncurrent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -221,6 +267,16 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
                 .addComponent(imgcurrpokemon, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pokemoncurrent))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addContainerGap())
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Pokemon en batalla"));
@@ -230,6 +286,14 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
         pokemoncurrentop.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pokemoncurrentop.setText("Current Pokemon op");
 
+        jLabel9.setText("Defensa");
+
+        jLabel7.setText("HP");
+
+        jLabel10.setText("Velocidad");
+
+        jLabel8.setText("Ataque");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -238,16 +302,40 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(imgcurrpokemonop, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pokemoncurrentop, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 100, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10))
+                .addGap(0, 28, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addComponent(imgcurrpokemonop, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pokemoncurrentop)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(imgcurrpokemonop, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pokemoncurrentop))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel8)
+                        .addGap(13, 13, 13)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel10)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        Iniciar.setText("Empezar Batalla");
+        Iniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IniciarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -257,50 +345,61 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lblentrenador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(hpentrenador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(pokemon1, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                                    .addComponent(pokemon2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblentrenador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(hpentrenador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(pokemon1, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                                .addComponent(pokemon2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(110, 110, 110)
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(hpentrenadorop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(hpentrenadorop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pokemonop2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pokemonop1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(218, 328, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lblopentrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(239, 239, 239))))
+                        .addGap(125, 125, 125))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(pokemonop2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(pokemonop1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jProgressBar4, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jProgressBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(20, 20, 20))))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(287, 287, 287)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Iniciar))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -323,9 +422,13 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(pokemon1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(pokemon2)
-                                        .addGap(62, 62, 62))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(37, 37, 37))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -337,17 +440,24 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(pokemonop1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jProgressBar3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(pokemonop2)
-                                        .addGap(49, 49, 49))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jProgressBar4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(29, 29, 29))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)))
                                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jSeparator1))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addContainerGap())
+                    .addComponent(Iniciar, javax.swing.GroupLayout.Alignment.TRAILING)))
         );
 
         pack();
@@ -357,8 +467,172 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_cmbpokemonActionPerformed
 
+    private void IniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarActionPerformed
+        batalla.setId(1);
+        try {
+            //Se prepara al oponente
+            entrenador_op=PokemonManager.queryByNameOfEntrenador(lblopentrenador.getText());
+            entrenador_op.addPokemon(PokemonManager.queryByNameOfPokemon("Pikachu"));
+            batalla.setHp_oponente(PokemonManager.queryByNameOfPokemon("Pikachu").getHp());
+            entrenador_op.addPokemon(PokemonManager.queryByNameOfPokemon("Bulbasaur"));
+            batalla.setHp_oponente(batalla.getHp_oponente()+PokemonManager.queryByNameOfPokemon("Bulbasaur").getHp());
+            entrenador_op.addPokemon(PokemonManager.queryByNameOfPokemon("Charmander"));
+            batalla.setHp_oponente(batalla.getHp_oponente()+PokemonManager.queryByNameOfPokemon("Charmander").getHp());
+            //Se añade movimientos a cada pokemon (4 por pokemon)
+            for(int i=0;i<entrenador_op.getPokemon().size();i++)
+                PokemonManager.addMovimientos(entrenador_op.getPokemon().get(i));
+        } catch (SQLException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //Se prepara el entrenador
+        entrenador.setNombre(lblentrenador.getText());
+        entrenador.setBatallas_ganadas(0);
+        entrenador.setBatallas_perdidas(0);
+        entrenador.setRegDate(new Date());
+        try {
+            PokemonManager.addEntrenador(entrenador);
+        } catch (SQLException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            Pokemon pokemon=PokemonManager.queryByNameOfPokemon(pokemon1.getText());
+            entrenador.addPokemon(pokemon);
+            batalla.setHp_entrenador(batalla.getHp_entrenador()+pokemon.getHp());
+            pokemon=PokemonManager.queryByNameOfPokemon(pokemon2.getText());
+            entrenador.addPokemon(pokemon);
+            batalla.setHp_entrenador(batalla.getHp_entrenador()+pokemon.getHp());
+            pokemon=PokemonManager.queryByNameOfPokemon(pokemoncurrent.getText());
+            entrenador.addPokemon(pokemon);
+            batalla.setHp_entrenador(batalla.getHp_entrenador()+pokemon.getHp());
+            
+            //Se añade movimientos a cada pokemon (4 por pokemon)
+            for(int i=0;i<entrenador.getPokemon().size();i++){
+                PokemonManager.addMovimientos(entrenador.getPokemon().get(i));  
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //LLenar la data de la pantalla
+        //Setear datos del entrenador
+        //Progress bar (HP) jugador
+        hpentrenador.setMaximum(batalla.getHp_entrenador());
+        hpentrenador.setValue(batalla.getHp_entrenador());
+        hpentrenador.setStringPainted(true);
+        hpentrenador.setString("HP: "+batalla.getHp_entrenador());
+        
+        lblentrenador.setText(entrenador.getNombre());
+        pokemon1.setText(entrenador.getPokemon().get(0).getNombre());
+        pokemon2.setText(entrenador.getPokemon().get(1).getNombre());
+        pokemoncurrent.setText(entrenador.getPokemon().get(2).getNombre());
+        
+        ImageIcon icon=new ImageIcon(entrenador.getPokemon().get(2).getImage());
+        imgcurrpokemon.setIcon(icon);
+        
+        //Completar movimientos
+        List<Pokemon> listPokemon = entrenador.getPokemon();
+        
+        movimiento1.setText(listPokemon.get(2).getMovimientos().get(0).getNombre());
+        movimiento2.setText(listPokemon.get(2).getMovimientos().get(1).getNombre());
+        movimiento3.setText(listPokemon.get(2).getMovimientos().get(2).getNombre());
+        movimiento4.setText(listPokemon.get(2).getMovimientos().get(3).getNombre());
+        
+        //Llenar el combobox
+        cmbpokemon.addItem(pokemon1.getText());
+        cmbpokemon.addItem(pokemon2.getText());
+        
+        //Setear datos del entrenador oponente
+        //Progress bar (HP) oponente
+        hpentrenadorop.setMaximum(batalla.getHp_oponente());
+        hpentrenadorop.setValue(batalla.getHp_oponente());
+        hpentrenadorop.setStringPainted(true);
+        hpentrenadorop.setString("HP: "+batalla.getHp_oponente());
+        
+        lblopentrenador.setText(entrenador_op.getNombre());
+        pokemonop1.setText(entrenador_op.getPokemon().get(0).getNombre());
+        pokemonop2.setText(entrenador_op.getPokemon().get(1).getNombre());
+        pokemoncurrentop.setText(entrenador_op.getPokemon().get(2).getNombre());
+        
+        ImageIcon iconop=new ImageIcon(entrenador_op.getPokemon().get(2).getImage());
+        imgcurrpokemonop.setIcon(iconop);
+        //Completar movimientos
+        List<Pokemon> listPokemon_op = entrenador_op.getPokemon();
+        
+        movimientoop1.setText(listPokemon_op.get(2).getMovimientos().get(0).getNombre());
+        movimientoop2.setText(listPokemon_op.get(2).getMovimientos().get(1).getNombre());
+        movimientoop3.setText(listPokemon_op.get(2).getMovimientos().get(2).getNombre());
+        movimientoop4.setText(listPokemon_op.get(2).getMovimientos().get(3).getNombre());
+            
+        Iniciar.setEnabled(false);
+        
+    }//GEN-LAST:event_IniciarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        //Hacemos el cambio de pokemon
+        Pokemon pokemon=null;
+        JOptionPane.showMessageDialog(null, "Indice seleccionado "+cmbpokemon.getSelectedIndex());
+        switch (cmbpokemon.getSelectedIndex()){
+            case 0: 
+                    String pokAux1 = "";
+                    char str1[]=pokemoncurrent.getText().toCharArray();
+                    for(int i=0;i<str1.length;i++)
+                        pokAux1+=str1[i];
+                    String pokAux2 = "";
+                    char str2[]=pokemon1.getText().toCharArray();
+                    for(int i=0;i<str2.length;i++)
+                        pokAux2+=str2[i];
+                    
+                    pokemoncurrent.setText(pokAux2);
+                    pokemon1.setText(pokAux1);
+                    cmbpokemon.removeAllItems();
+                    cmbpokemon.addItem(pokAux1);
+                    cmbpokemon.addItem(pokemon2.getText());
+                    break;
+            case 1:
+                    String pokAux3 = "";
+                    char str3[]=pokemoncurrent.getText().toCharArray();
+                    for(int i=0;i<str3.length;i++)
+                        pokAux3+=str3[i];
+                    String pokAux4 = "";
+                    char str4[]=pokemon2.getText().toCharArray();
+                    for(int i=0;i<str4.length;i++)
+                        pokAux4+=str4[i];
+                    
+                    pokemoncurrent.setText(pokAux4);
+                    pokemon2.setText(pokAux3);
+                    
+                    cmbpokemon.removeAllItems();
+                    cmbpokemon.addItem(pokemon1.getText());
+                    cmbpokemon.addItem(pokAux3);
+                    break;
+        }
+        try {
+            pokemon=PokemonManager.queryByNameOfPokemon(pokemoncurrent.getText());
+            ImageIcon icon=new ImageIcon(pokemon.getImage());
+            imgcurrpokemon.setIcon(icon);
+            
+            Pokemon pokemonAux=null;
+            for(int i=0;i<entrenador.getPokemon().size();i++)
+                if(entrenador.getPokemon().get(i).getNombre().equals(pokemoncurrent.getText())){
+                    JOptionPane.showMessageDialog(null, "pokemon "+entrenador.getPokemon().get(i).getNombre());
+                    pokemonAux = entrenador.getPokemon().get(i);
+                } 
+                    
+            movimiento1.setText(pokemonAux.getMovimientos().get(0).getNombre());
+            movimiento2.setText(pokemonAux.getMovimientos().get(1).getNombre());
+            movimiento3.setText(pokemonAux.getMovimientos().get(2).getNombre());
+            movimiento4.setText(pokemonAux.getMovimientos().get(3).getNombre());
+        } catch (SQLException ex) {
+            Logger.getLogger(BatallaPokemon.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+//        pokemoncurrent.setText(entrenador.getPokemon().get(2).getNombre());
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton Iniciar;
     private javax.swing.JComboBox<String> cmbpokemon;
     public javax.swing.JProgressBar hpentrenador;
     public javax.swing.JProgressBar hpentrenadorop;
@@ -367,12 +641,24 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JProgressBar jProgressBar2;
+    private javax.swing.JProgressBar jProgressBar3;
+    private javax.swing.JProgressBar jProgressBar4;
     private javax.swing.JSeparator jSeparator1;
     public javax.swing.JLabel lblentrenador;
     public javax.swing.JLabel lblopentrenador;
