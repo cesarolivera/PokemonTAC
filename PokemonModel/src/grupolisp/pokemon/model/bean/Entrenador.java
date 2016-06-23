@@ -53,7 +53,14 @@ public class Entrenador {
     public void setRegDate(Date fechaReg) {
             this.fechaReg = fechaReg;
     }
-
+    public Pokemon getPokemonByName(String name){
+        Pokemon pokemon=null;
+        for(int i=0;i<this.getPokemon().size();i++){
+                if(this.getPokemon().get(i).getNombre().equals(name))
+                        pokemon=this.getPokemon().get(i);
+        }
+        return pokemon;
+    }
     /**
      * @return the batallas_perdidas
      */

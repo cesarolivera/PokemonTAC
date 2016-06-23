@@ -71,21 +71,21 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
         jPanel4 = new javax.swing.JPanel();
         imgcurrpokemon = new javax.swing.JLabel();
         pokemoncurrent = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        hp = new javax.swing.JLabel();
+        ataque = new javax.swing.JLabel();
+        defensa = new javax.swing.JLabel();
+        velocidad = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         imgcurrpokemonop = new javax.swing.JLabel();
         pokemoncurrentop = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jProgressBar1 = new javax.swing.JProgressBar();
-        jProgressBar2 = new javax.swing.JProgressBar();
-        jProgressBar3 = new javax.swing.JProgressBar();
-        jProgressBar4 = new javax.swing.JProgressBar();
+        defensaop = new javax.swing.JLabel();
+        hpop = new javax.swing.JLabel();
+        velocidadop = new javax.swing.JLabel();
+        ataqueop = new javax.swing.JLabel();
+        hppokemon1 = new javax.swing.JProgressBar();
+        hppokemon2 = new javax.swing.JProgressBar();
+        hppokemonop1 = new javax.swing.JProgressBar();
+        hppokemonop2 = new javax.swing.JProgressBar();
         Iniciar = new javax.swing.JButton();
 
         setClosable(true);
@@ -241,13 +241,13 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
         pokemoncurrent.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pokemoncurrent.setText("Current Pokemon");
 
-        jLabel2.setText("HP");
+        hp.setText("HP");
 
-        jLabel3.setText("Ataque");
+        ataque.setText("Ataque");
 
-        jLabel5.setText("Defensa");
+        defensa.setText("Defensa");
 
-        jLabel6.setText("Velocidad");
+        velocidad.setText("Velocidad");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -256,10 +256,10 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
+                    .addComponent(hp)
+                    .addComponent(ataque)
+                    .addComponent(defensa)
+                    .addComponent(velocidad))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(imgcurrpokemon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -274,13 +274,13 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
                 .addComponent(pokemoncurrent))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(hp)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addComponent(ataque)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
+                .addComponent(defensa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel6)
+                .addComponent(velocidad)
                 .addContainerGap())
         );
 
@@ -291,13 +291,13 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
         pokemoncurrentop.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pokemoncurrentop.setText("Current Pokemon op");
 
-        jLabel9.setText("Defensa");
+        defensaop.setText("Defensa");
 
-        jLabel7.setText("HP");
+        hpop.setText("HP");
 
-        jLabel10.setText("Velocidad");
+        velocidadop.setText("Velocidad");
 
-        jLabel8.setText("Ataque");
+        ataqueop.setText("Ataque");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -309,10 +309,10 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
                     .addComponent(pokemoncurrentop, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10))
+                    .addComponent(hpop)
+                    .addComponent(ataqueop)
+                    .addComponent(defensaop)
+                    .addComponent(velocidadop))
                 .addGap(0, 28, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -325,13 +325,13 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
                         .addComponent(pokemoncurrentop))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(5, 5, 5)
-                        .addComponent(jLabel7)
+                        .addComponent(hpop)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel8)
+                        .addComponent(ataqueop)
                         .addGap(13, 13, 13)
-                        .addComponent(jLabel9)
+                        .addComponent(defensaop)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel10)))
+                        .addComponent(velocidadop)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -366,8 +366,8 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(pokemon1, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
                                 .addComponent(pokemon2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(hppokemon1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(hppokemon2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -397,8 +397,8 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
                                 .addContainerGap())
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jProgressBar4, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jProgressBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(hppokemonop2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(hppokemonop1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(20, 20, 20))))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(287, 287, 287)
@@ -428,11 +428,11 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(pokemon1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(hppokemon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(pokemon2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(hppokemon2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(37, 37, 37))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -446,11 +446,11 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(pokemonop1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jProgressBar3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(hppokemonop1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(pokemonop2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jProgressBar4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(hppokemonop2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(29, 29, 29))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -467,7 +467,35 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private void actualizarDatosdelLosPokemons() throws SQLException{
+        hppokemon1.setMaximum(PokemonManager.queryByNameOfPokemon(pokemon1.getText()).getHp());
+        hppokemon2.setMaximum(PokemonManager.queryByNameOfPokemon(pokemon2.getText()).getHp());
+        hppokemon1.setValue(entrenador.getPokemonByName(pokemon1.getText()).getHp());
+        hppokemon1.setStringPainted(true);
+        hppokemon1.setString("HP: "+entrenador.getPokemonByName(pokemon1.getText()).getHp());
+        hppokemon2.setValue(entrenador.getPokemonByName(pokemon2.getText()).getHp());
+        hppokemon2.setStringPainted(true);
+        hppokemon2.setString("HP: "+entrenador.getPokemonByName(pokemon2.getText()).getHp());
+        
+        hp.setText("HP: "+entrenador.getPokemonByName(pokemoncurrent.getText()).getHp());
+        ataque.setText("Ataque: "+entrenador.getPokemonByName(pokemoncurrent.getText()).getAtaque());
+        
+        
+        hppokemonop1.setMaximum(PokemonManager.queryByNameOfPokemon(pokemonop1.getText()).getHp());
+        hppokemonop2.setMaximum(PokemonManager.queryByNameOfPokemon(pokemonop2.getText()).getHp());
+        hppokemonop1.setValue(entrenador_op.getPokemonByName(pokemonop1.getText()).getHp());
+        hppokemonop1.setStringPainted(true);
+        hppokemonop1.setString("HP: "+entrenador_op.getPokemonByName(pokemonop1.getText()).getHp());
+        hppokemonop2.setValue(entrenador_op.getPokemonByName(pokemonop2.getText()).getHp());
+        hppokemonop2.setStringPainted(true);
+        hppokemonop2.setString("HP: "+entrenador_op.getPokemonByName(pokemonop2.getText()).getHp());
+        
+        hpop.setText("HP: "+entrenador_op.getPokemonByName(pokemoncurrentop.getText()).getHp());
+        ataqueop.setText("Ataque: "+entrenador_op.getPokemonByName(pokemoncurrentop.getText()).getAtaque());
+        
+    }
+    
     private void cmbpokemonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbpokemonActionPerformed
         
     }//GEN-LAST:event_cmbpokemonActionPerformed
@@ -532,8 +560,16 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
         pokemon2.setText(entrenador.getPokemon().get(1).getNombre());
         pokemoncurrent.setText(entrenador.getPokemon().get(2).getNombre());
         
+        hppokemon1.setMaximum(entrenador.getPokemonByName(pokemon1.getText()).getHp());
+        hppokemon2.setMaximum(entrenador.getPokemonByName(pokemon2.getText()).getHp());
+        hppokemon1.setValue(entrenador.getPokemonByName(pokemon1.getText()).getHp());
+        hppokemon2.setValue(entrenador.getPokemonByName(pokemon2.getText()).getHp());
+        
         ImageIcon icon=new ImageIcon(entrenador.getPokemon().get(2).getImage());
         imgcurrpokemon.setIcon(icon);
+        
+        
+        
         
         //Completar movimientos
         List<Pokemon> listPokemon = entrenador.getPokemon();
@@ -554,15 +590,25 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
         hpentrenadorop.setStringPainted(true);
         hpentrenadorop.setString("HP: "+batalla.getHp_oponente());
         
+        
         lblopentrenador.setText(entrenador_op.getNombre());
         pokemonop1.setText(entrenador_op.getPokemon().get(0).getNombre());
         pokemonop2.setText(entrenador_op.getPokemon().get(1).getNombre());
         pokemoncurrentop.setText(entrenador_op.getPokemon().get(2).getNombre());
         
+        hppokemonop1.setMaximum(entrenador_op.getPokemonByName(pokemonop1.getText()).getHp());
+        hppokemonop2.setMaximum(entrenador_op.getPokemonByName(pokemonop2.getText()).getHp());
+        hppokemonop1.setValue(entrenador_op.getPokemonByName(pokemonop1.getText()).getHp());
+        hppokemonop2.setValue(entrenador_op.getPokemonByName(pokemonop2.getText()).getHp());
+        
         ImageIcon iconop=new ImageIcon(entrenador_op.getPokemon().get(2).getImage());
         imgcurrpokemonop.setIcon(iconop);
         //Completar movimientos
         List<Pokemon> listPokemon_op = entrenador_op.getPokemon();
+        
+        //Completar datos del pokemon en combate
+        hpop.setText(""+entrenador_op.getPokemonByName(pokemoncurrentop.getText()).getHp());
+        ataqueop.setText(""+entrenador_op.getPokemonByName(pokemoncurrentop.getText()).getAtaque());
         
         movimientoop1.setText(listPokemon_op.get(2).getMovimientos().get(0).getNombre());
         movimientoop2.setText(listPokemon_op.get(2).getMovimientos().get(1).getNombre());
@@ -570,7 +616,8 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
         movimientoop4.setText(listPokemon_op.get(2).getMovimientos().get(3).getNombre());
             
         Iniciar.setEnabled(false);
-        
+        Iniciar.setText("");
+        Iniciar.setBorder(null);
     }//GEN-LAST:event_IniciarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -628,6 +675,20 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
             movimiento2.setText(pokemonAux.getMovimientos().get(1).getNombre());
             movimiento3.setText(pokemonAux.getMovimientos().get(2).getNombre());
             movimiento4.setText(pokemonAux.getMovimientos().get(3).getNombre());
+            
+            //Actualizo barras de vida
+            hppokemon1.setMaximum(PokemonManager.queryByNameOfPokemon(pokemon1.getText()).getHp());
+            hppokemon1.setValue(entrenador.getPokemonByName(pokemon1.getText()).getHp());
+            hppokemon1.setString("HP: "+entrenador.getPokemonByName(pokemon2.getText()).getHp());
+            hppokemon1.setMaximum(PokemonManager.queryByNameOfPokemon(pokemon2.getText()).getHp());
+            hppokemon2.setValue(entrenador.getPokemonByName(pokemon2.getText()).getHp());
+            hppokemon2.setString("HP: "+entrenador.getPokemonByName(pokemon2.getText()).getHp());
+            
+            hppokemonop1.setValue(entrenador_op.getPokemonByName(pokemonop1.getText()).getHp());
+            hppokemonop1.setString("HP: "+entrenador_op.getPokemonByName(pokemonop1.getText()).getHp());
+            hppokemonop2.setValue(entrenador_op.getPokemonByName(pokemonop2.getText()).getHp());
+            hppokemonop2.setString("HP: "+entrenador_op.getPokemonByName(pokemonop2.getText()).getHp());
+            
         } catch (SQLException ex) {
             Logger.getLogger(BatallaPokemon.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -641,9 +702,14 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
             
             //Se realiza el turno
             //Se busca el indice del pokemon seleccionado
+            
             int indexPokemon=0;
             for(int i=0;i<entrenador.getPokemon().size();i++){
                 if(entrenador.getPokemon().get(i).getNombre().equals(pokemoncurrent.getText())) indexPokemon=i;
+            }
+            if(!entrenador.getPokemon().get(indexPokemon).isEn_combate()){
+                JOptionPane.showMessageDialog(null, "El pokemon que elegiste esta fuera de combate, por favor elije otro pokemon");
+                return;
             }
             //Se busca el indice del movimiento seleccionado
             int indexMovimiento=0;
@@ -663,32 +729,23 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
             //Progress bar (HP) jugador
             hpentrenador.setValue(batalla.getHp_entrenador());
             hpentrenador.setStringPainted(true);
-            hpentrenador.setString("HP: "+batalla.getHp_entrenador());
-            
+            hpentrenador.setString("HP: "+batalla.getHp_entrenador());  
             
             //Progress bar (HP) oponente
             hpentrenadorop.setValue(batalla.getHp_oponente());
             hpentrenadorop.setStringPainted(true);
             hpentrenadorop.setString("HP: "+batalla.getHp_oponente());
             
-            Pokemon pokAux=null;
-            for(int i=0;i<entrenador_op.getPokemon().size();i++){
-                if(entrenador_op.getPokemon().get(i).getNombre().equals(pokemoncurrentop.getText()))
-                    pokAux=entrenador_op.getPokemon().get(i);
-            }
+            Pokemon pokAux=entrenador_op.getPokemonByName(pokemoncurrentop.getText());
+
             if(pokAux.getHp()==0){
                 //Verificar si quedan 2 ó 1 pokemon
-                Pokemon pokAux1=null;
-                for(int i=0;i<entrenador_op.getPokemon().size();i++){
-                    if(entrenador_op.getPokemon().get(i).getNombre().equals(pokemonop1.getText()))
-                        pokAux1=entrenador_op.getPokemon().get(i);
-                }
-                Pokemon pokAux2=null;
-                for(int i=0;i<entrenador_op.getPokemon().size();i++){
-                    if(entrenador_op.getPokemon().get(i).getNombre().equals(pokemonop2.getText()))
-                        pokAux2=entrenador_op.getPokemon().get(i);
-                }
-                if(((pokAux1!=null)&&(pokAux2!=null))||(pokAux2!=null)){
+                Pokemon pokAux1=entrenador_op.getPokemonByName(pokemonop1.getText());
+                Pokemon pokAux2=entrenador_op.getPokemonByName(pokemonop2.getText());
+                
+                if((pokAux2.isEn_combate() && !pokAux1.isEn_combate())||
+                   (pokAux1.isEn_combate() && pokAux2.isEn_combate()))
+                {
                     //Se realiza el cambio entre el pokemon 2 y el actual
                     String pokAuxStr = "";
                     char str1[]=pokemoncurrentop.getText().toCharArray();
@@ -697,21 +754,26 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
                     pokemoncurrentop.setText(pokemonop2.getText());
                     pokemonop2.setText(pokAuxStr);
                     
-                    Pokemon pokemonAux=null;
-                    for(int i=0;i<entrenador_op.getPokemon().size();i++)
-                        if(entrenador_op.getPokemon().get(i).getNombre().equals(pokemoncurrentop.getText())){
-                            pokemonAux = entrenador_op.getPokemon().get(i);
-                        } 
+                    ImageIcon iconop = null;
+                    try {
+                        iconop = new ImageIcon(PokemonManager.queryByNameOfPokemon(pokemoncurrentop.getText()).getImage());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(BatallaPokemon.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    imgcurrpokemonop.setIcon(iconop);
                     
-                    
-                    movimiento1.setText(pokemonAux.getMovimientos().get(0).getNombre());
-                    movimiento2.setText(pokemonAux.getMovimientos().get(1).getNombre());
-                    movimiento3.setText(pokemonAux.getMovimientos().get(2).getNombre());
-                    movimiento4.setText(pokemonAux.getMovimientos().get(3).getNombre());
+                    Pokemon pokemonAux= entrenador_op.getPokemonByName(pokemoncurrentop.getText());
+                    movimientoop1.setText(pokemonAux.getMovimientos().get(0).getNombre());
+                    movimientoop2.setText(pokemonAux.getMovimientos().get(1).getNombre());
+                    movimientoop3.setText(pokemonAux.getMovimientos().get(2).getNombre());
+                    movimientoop4.setText(pokemonAux.getMovimientos().get(3).getNombre());
                     
                 }
                 else if(pokAux1!=null){
                     //Se realiza el cambio entre el pokemon 1 y el actual
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "La batalla ha finalizado. EL ganador fue "+entrenador.getNombre());
                 }
                 
                 
@@ -726,50 +788,72 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
                 ImageIcon iconop=new ImageIcon(entrenador_op.getPokemon().get(2).getImage());
                 imgcurrpokemonop.setIcon(iconop);
 
-                //Completar movimientos
-                List<Pokemon> listPokemon_op = entrenador_op.getPokemon();
-
-                movimientoop1.setText(listPokemon_op.get(2).getMovimientos().get(0).getNombre());
-                movimientoop2.setText(listPokemon_op.get(2).getMovimientos().get(1).getNombre());
-                movimientoop3.setText(listPokemon_op.get(2).getMovimientos().get(2).getNombre());
-                movimientoop4.setText(listPokemon_op.get(2).getMovimientos().get(3).getNombre());
+//                //Completar movimientos
+//                List<Pokemon> listPokemon_op = entrenador_op.getPokemon();
+//
+//                movimientoop1.setText(listPokemon_op.get(2).getMovimientos().get(0).getNombre());
+//                movimientoop2.setText(listPokemon_op.get(2).getMovimientos().get(1).getNombre());
+//                movimientoop3.setText(listPokemon_op.get(2).getMovimientos().get(2).getNombre());
+//                movimientoop4.setText(listPokemon_op.get(2).getMovimientos().get(3).getNombre());
+            }
+            
+            try {
+                //Actualizar las barras de vida de los pokemons
+                actualizarDatosdelLosPokemons();
+            } catch (SQLException ex) {
+                Logger.getLogger(BatallaPokemon.class.getName()).log(Level.SEVERE, null, ex);
             }
            
-            
+            ImageIcon icon = null;
+            try {
+                icon = new ImageIcon(PokemonManager.queryByNameOfPokemon(pokemoncurrent.getText()).getImage());
+            } catch (SQLException ex) {
+                Logger.getLogger(BatallaPokemon.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            imgcurrpokemon.setIcon(icon);
+            Pokemon pokemonAux=entrenador_op.getPokemonByName(pokemoncurrentop.getText());
+
+            movimientoop1.setText(pokemonAux.getMovimientos().get(0).getNombre());
+            movimientoop2.setText(pokemonAux.getMovimientos().get(1).getNombre());
+            movimientoop3.setText(pokemonAux.getMovimientos().get(2).getNombre());
+            movimientoop4.setText(pokemonAux.getMovimientos().get(3).getNombre());
+           //hpop.setText(""+entrenador_op.getPokemonByName(pokemoncurrentop.getText()));
+           //ataqueop.setText(""+entrenador_op.getPokemonByName(pokemoncurrentop.getText()).getAtaque());
         }
         else{
-            JOptionPane.showMessageDialog(null, "Finalizo la batalla. Ganador ");
+            if(batalla.getHp_entrenador()<=0)
+                JOptionPane.showMessageDialog(null, "Finalizo la batalla. Ganador: "+entrenador_op.getNombre());
+            else 
+                JOptionPane.showMessageDialog(null, "Finalizo la batalla. Ganador: "+entrenador.getNombre());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton Iniciar;
+    public javax.swing.JLabel ataque;
+    public javax.swing.JLabel ataqueop;
     private javax.swing.JComboBox<String> cmbpokemon;
+    public javax.swing.JLabel defensa;
+    public javax.swing.JLabel defensaop;
+    public javax.swing.JLabel hp;
     public javax.swing.JProgressBar hpentrenador;
     public javax.swing.JProgressBar hpentrenadorop;
+    private javax.swing.JLabel hpop;
+    public javax.swing.JProgressBar hppokemon1;
+    public javax.swing.JProgressBar hppokemon2;
+    private javax.swing.JProgressBar hppokemonop1;
+    private javax.swing.JProgressBar hppokemonop2;
     public javax.swing.JLabel imgcurrpokemon;
     public javax.swing.JLabel imgcurrpokemonop;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JProgressBar jProgressBar1;
-    private javax.swing.JProgressBar jProgressBar2;
-    private javax.swing.JProgressBar jProgressBar3;
-    private javax.swing.JProgressBar jProgressBar4;
     private javax.swing.JSeparator jSeparator1;
     public javax.swing.JLabel lblentrenador;
     public javax.swing.JLabel lblopentrenador;
@@ -789,5 +873,7 @@ public class BatallaPokemon extends javax.swing.JInternalFrame {
     public javax.swing.JLabel pokemoncurrentop;
     public javax.swing.JLabel pokemonop1;
     public javax.swing.JLabel pokemonop2;
+    public javax.swing.JLabel velocidad;
+    public javax.swing.JLabel velocidadop;
     // End of variables declaration//GEN-END:variables
 }

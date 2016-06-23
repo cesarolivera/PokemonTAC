@@ -15,12 +15,104 @@ import java.util.List;
 import java.sql.*;
 import java.util.Calendar;
 import java.util.Random;
+import javax.swing.JOptionPane;
 /**
  *
  * @author César Olivera
  */
 
 public class PokemonManager {
+     private static int getNumPokemonsEnCombateVivos(Entrenador entrenador){
+        int numPok=0;
+        
+        for(int i=0;i<entrenador.getPokemon().size();i++)
+            if(entrenador.getPokemon().get(i).isEn_combate()  && entrenador.getPokemon().get(i).getHp()>0)
+                numPok++;
+        
+        
+        return numPok;
+    }
+
+     
+    private static int getHabilitadPlanta(Entrenador entrenador, Entrenador maquina){
+        int numPok=0;
+        
+        for(int i=0;i<entrenador.getPokemon().size();i++)
+            if(entrenador.getPokemon().get(i).isEn_combate()  && entrenador.getPokemon().get(i).getHp()>0  && entrenador.getPokemon().get(i).getTipo()=="Planta" && 
+                    (maquina.getPokemon().get(i).getTipo()=="Agua" || maquina.getPokemon().get(i).getTipo()=="Tierra") && 
+                    (maquina.getPokemon().get(i).getTipo()=="Roca" || maquina.getPokemon().get(i).getTipo()=="Fuego"))
+
+                numPok++;
+                                 
+        
+            
+        return numPok;
+    }
+
+     private static int getHabilitadFuego(Entrenador entrenador, Entrenador maquina){
+        int numPok=0;
+        
+        for(int i=0;i<entrenador.getPokemon().size();i++)
+            if(entrenador.getPokemon().get(i).isEn_combate()  && entrenador.getPokemon().get(i).getHp()>0  && entrenador.getPokemon().get(i).getTipo()=="Fuego" && 
+                    (maquina.getPokemon().get(i).getTipo()=="Agua" || maquina.getPokemon().get(i).getTipo()=="Tierra" || maquina.getPokemon().get(i).getTipo()=="Hielo" || maquina.getPokemon().get(i).getTipo()=="Fuego"|| maquina.getPokemon().get(i).getTipo()=="Acero")){
+                numPok++;
+            }               
+        
+        
+        return numPok;
+    }
+     
+     
+      private static int getHabilitadAgua(Entrenador entrenador, Entrenador maquina){
+        int numPok=0;
+        
+        for(int i=0;i<entrenador.getPokemon().size();i++)
+            if(entrenador.getPokemon().get(i).isEn_combate()  && entrenador.getPokemon().get(i).getHp()>0  && entrenador.getPokemon().get(i).getTipo()=="Agua" && 
+                    (maquina.getPokemon().get(i).getTipo()=="Tierra" || maquina.getPokemon().get(i).getTipo()=="Hielo" || maquina.getPokemon().get(i).getTipo()=="Fuego"|| maquina.getPokemon().get(i).getTipo()=="Roca")){
+                numPok++;
+            }          
+        
+        return numPok;
+    }
+     
+      private static int getHabilitadBicho(Entrenador entrenador, Entrenador maquina){
+        int numPok=0;
+        
+        for(int i=0;i<entrenador.getPokemon().size();i++)
+            if(entrenador.getPokemon().get(i).isEn_combate()  && entrenador.getPokemon().get(i).getHp()>0  && entrenador.getPokemon().get(i).getTipo()=="Bicho" && 
+                    (maquina.getPokemon().get(i).getTipo()=="Planta" || maquina.getPokemon().get(i).getTipo()=="Psiquico" || maquina.getPokemon().get(i).getTipo()=="Siniestro")){
+                numPok++;
+            }          
+        
+        return numPok;
+    }
+      
+      
+      private static int getHabilitadElectrico(Entrenador entrenador, Entrenador maquina){
+        int numPok=0;
+        
+        for(int i=0;i<entrenador.getPokemon().size();i++)
+            if(entrenador.getPokemon().get(i).isEn_combate()  && entrenador.getPokemon().get(i).getHp()>0  && entrenador.getPokemon().get(i).getTipo()=="Electrico" && 
+                    (maquina.getPokemon().get(i).getTipo()=="Agua" || maquina.getPokemon().get(i).getTipo()=="Volador" )){
+                numPok++;
+            }          
+        
+        return numPok;
+    }
+     
+     private static int getHabilitadTierra(Entrenador entrenador, Entrenador maquina){
+        int numPok=0;
+        
+        for(int i=0;i<entrenador.getPokemon().size();i++)
+            if(entrenador.getPokemon().get(i).isEn_combate()  && entrenador.getPokemon().get(i).getHp()>0  && entrenador.getPokemon().get(i).getTipo()=="Tierra" && 
+                    (maquina.getPokemon().get(i).getTipo()=="Agua" || maquina.getPokemon().get(i).getTipo()=="Volador" )){
+                numPok++;
+            }          
+                
+        return numPok;
+    } 
+    
+    
     private static int getNumPokemonsEnCombate(Entrenador entrenador){
         int numPok=0;
         
@@ -41,6 +133,62 @@ public class PokemonManager {
         return hp_op-damage;
     }
 
+    
+    private static int [] generarIndicesMiniMaxAL(Batalla batalla,Entrenador entrenador_op,Pokemon pokemon,int indexMov, int profundidad, int vida_Maq, int vida_Hum){
+        int []numMiniMax=new int[2];
+        int max_dif_hp=-100;
+        int max_indexPokemon=1;
+        int max_indexMov=1;
+        int hp_ent,hp_op;
+        int min_dif_hp=200;
+        int min_indexPokemon=1;
+        int min_indexMov=1;
+        int hp_ent_original;
+        int hp_op_original;
+        
+        int numPokemons=getNumPokemonsEnCombate(entrenador_op);    
+        for(int i=0;i<numPokemons;i++){
+            Pokemon pokemon_op=entrenador_op.getPokemon().get(i);        
+            for(int j=0;j<pokemon.getMovimientos().size();j++){
+                System.out.println("Es el oponente:"+"Coord:("+i+","+j);
+                hp_op=getHP_afterAtack(batalla.getHp_oponente(),pokemon,j,pokemon_op);
+                System.out.println("Es el entrenador:"+"Coord:("+i+","+j);
+                hp_ent=getHP_afterAtack(batalla.getHp_entrenador(),pokemon_op,indexMov,pokemon);
+                
+                if((hp_op-hp_ent)>max_dif_hp){
+                    max_dif_hp=hp_op-hp_ent;
+                    max_indexPokemon=i;
+                    max_indexMov=j;   
+                    batalla.getHp_entrenador();
+                    
+                    generarIndicesMiniMaxAL(batalla,entrenador_op,pokemon,indexMov, profundidad--, vida_Maq , vida_Hum  - max_dif_hp);
+                }
+                else {
+                    min_dif_hp=hp_op-hp_ent;
+                    min_indexPokemon=i;
+                    min_indexMov=j;
+                   
+                    generarIndicesMiniMaxAL(batalla,entrenador_op,pokemon,indexMov, profundidad--, vida_Maq  + min_dif_hp, vida_Hum);
+                }
+                
+                if((vida_Maq <= 0)   || (vida_Hum <= 0) || (profundidad ==0)  ){
+                    numMiniMax[0]=max_indexPokemon;
+                    numMiniMax[1]=max_indexMov;
+                    System.out.println("indice de pokemon max:"+max_indexPokemon+"---inidice de movimiento max:"+max_indexMov);
+                    return numMiniMax;
+                }
+                
+            }
+       
+        }
+        return numMiniMax;
+    }
+    
+    
+    
+    
+    
+    
     private static int [] generarIndicesMiniMax(Batalla batalla,Entrenador entrenador_op,Pokemon pokemon,int indexMov){
         int []numMiniMax=new int[2];
         int max_dif_hp=-100;
@@ -74,16 +222,31 @@ public class PokemonManager {
         return numMiniMax;
     }
     
-    private static int [] generarAleatorios(int cant){
+    private static int [] generarAleatorios(Entrenador entrenador_op){
+        int []numRand=new int[2];
+        int numPokemonsValidos=getNumPokemonsEnCombate(entrenador_op);
+
+        int cant=numPokemonsValidos;
+        
         Calendar calendario = Calendar.getInstance();
         int minutos, segundos;
         minutos = calendario.get(Calendar.MINUTE);
         segundos = calendario.get(Calendar.SECOND);
-//        System.out.println(minutos + ":" + segundos);
         
-        int []numRand=new int[2];
         Random rnd = new Random((minutos*100+segundos*10)*123);
-        numRand[0]=rnd.nextInt(cant)+1;
+        int numAux=rnd.nextInt(cant)+1;
+        //Encontramos el indice valido
+        int contador=1;
+        for(int i=0;i<entrenador_op.getPokemon().size();i++){
+            if(entrenador_op.getPokemon().get(i).isEn_combate()){
+                if(contador==numAux){
+                    numRand[0]=i+1;
+                    break;
+                }
+                else contador++;
+            }
+        }
+        
         rnd.setSeed((minutos*100+segundos*10)*123);
         numRand[1]=rnd.nextInt(4)+1;
        
@@ -96,13 +259,14 @@ public class PokemonManager {
         if(damage<=0){
             damage=0;
         }
-        System.out.println(damage);
+        //System.out.println(damage);
         return damage;
         
     }
     public static void ataquePokemon(Batalla batalla,Pokemon pokemon,int indexMov,Entrenador entrenador_op){
         //Escojer movimoentos aleatorios
-        int numRand[]=generarAleatorios(entrenador_op.getPokemon().size());
+        int numRand[]=generarAleatorios(entrenador_op);
+        //int numRand[]=generarIndicesMiniMaxAL(batalla,entrenador_op,pokemon,indexMov,5,batalla.getHp_oponente(),batalla.getHp_entrenador());
         //int numRand[]=generarIndicesMiniMax(batalla,entrenador_op,pokemon,indexMov);//MiniMAx
         int indexPokemon = numRand[0]; //Aleatorio
         int indexMovimiento = numRand[1]; //Aleatorio
@@ -115,6 +279,7 @@ public class PokemonManager {
 //            numRand=generarAleatorios(contador);
 //            indexPokemon = numRand[0];
 //        }
+        JOptionPane.showMessageDialog(null, "Los indices son (x,y): "+indexPokemon+","+indexMovimiento);
         //int numRand2[]=generarIndicesMiniMax(batalla,entrenador_op,pokemon,indexMov); //MiniMax
         
 //        System.out.println("******************************************************"); //MiniMax
@@ -125,17 +290,17 @@ public class PokemonManager {
         
         System.out.println(entrenador_op.getNombre()+":"+pokemon_op.getNombre()+" realizó el movimiento "+entrenador_op.getPokemon().get(indexPokemon-1).getMovimientos().get(indexMovimiento-1).getNombre());
         System.out.println("Tu "+pokemon.getNombre()+" realizó el movimiento "+pokemon.getMovimientos().get(indexMov).getNombre());
-        System.out.print("Damage que el oponente recibió:");
+        //System.out.print("Damage que el oponente recibió:");
        
         int damage_op=getDamage(pokemon.getAtaque(),pokemon_op.getDefensa(),
                             pokemon.getMovimientos().get(indexMov).getBase_power(),
                             pokemon_op.getVelocidad());
-        System.out.print("Damage que recibí:");
+        //System.out.print("Damage que recibí:");
         
         int damage=getDamage(pokemon_op.getAtaque(),pokemon.getDefensa(),
                             pokemon_op.getMovimientos().get(indexMovimiento-1).getBase_power(),
                             pokemon.getVelocidad());
-        
+        JOptionPane.showMessageDialog(null, "Damage que el oponente recibió: "+damage_op+"..Damage que recibí: "+damage);
         if(damage_op>0){
             if(pokemon_op.getHp()<=damage_op){ 
                 pokemon_op.setEn_combate(false);

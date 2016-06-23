@@ -29,7 +29,7 @@ public class PokemonAplication {
         VentanaPrincipal ventana=new VentanaPrincipal();
         ventana.setVisible(true);
         
-        
+    /*    
         Scanner in=new Scanner(System.in);
         Batalla batalla=new Batalla();
         batalla.setId(1);
@@ -233,7 +233,7 @@ public class PokemonAplication {
             System.out.println("****PROXIMAMENTE ESTARÄ DISPONIBLE ESTE MODO DE JUEGO*****");
         }
           
-
+        */
     }
     
 }

@@ -29,11 +29,13 @@ public class DataGame extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        modobatalla = new javax.swing.ButtonGroup();
+        dificultad = new javax.swing.ButtonGroup();
         txtnentrenador = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         confirmdatosbatalla = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        modo = new javax.swing.JPanel();
         batalla3x3 = new javax.swing.JRadioButton();
         batalla4x4 = new javax.swing.JRadioButton();
         jPanel2 = new javax.swing.JPanel();
@@ -62,27 +64,29 @@ public class DataGame extends javax.swing.JInternalFrame {
 
         jButton2.setText("Cancelar");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Modo de Batalla"));
+        modo.setBorder(javax.swing.BorderFactory.createTitledBorder("Modo de Batalla"));
 
+        modobatalla.add(batalla3x3);
         batalla3x3.setSelected(true);
         batalla3x3.setText("Batalla 3 vs 3");
 
+        modobatalla.add(batalla4x4);
         batalla4x4.setText("Batalla 4 vs 4");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout modoLayout = new javax.swing.GroupLayout(modo);
+        modo.setLayout(modoLayout);
+        modoLayout.setHorizontalGroup(
+            modoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(modoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(modoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(batalla3x3)
                     .addComponent(batalla4x4))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        modoLayout.setVerticalGroup(
+            modoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(modoLayout.createSequentialGroup()
                 .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(batalla3x3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -91,9 +95,11 @@ public class DataGame extends javax.swing.JInternalFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Dificultad"));
 
+        dificultad.add(rbfacil);
         rbfacil.setSelected(true);
         rbfacil.setText("Facil");
 
+        dificultad.add(rbdificil);
         rbdificil.setText("Dificil");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -138,7 +144,7 @@ public class DataGame extends javax.swing.JInternalFrame {
                 .addContainerGap(126, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(modo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(360, 360, 360))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(confirmdatosbatalla)
@@ -162,7 +168,7 @@ public class DataGame extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2))
                         .addGap(74, 74, 74)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(modo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirmdatosbatalla)
@@ -216,11 +222,13 @@ public class DataGame extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton batalla3x3;
     private javax.swing.JRadioButton batalla4x4;
     private javax.swing.JButton confirmdatosbatalla;
+    private javax.swing.ButtonGroup dificultad;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel modo;
+    private javax.swing.ButtonGroup modobatalla;
     private javax.swing.JRadioButton rbdificil;
     private javax.swing.JRadioButton rbfacil;
     public javax.swing.JTextField txtnentrenador;
